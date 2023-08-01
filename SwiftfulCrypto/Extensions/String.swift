@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+extension String {
+    
+    var removeHTML: String {
+        return self.replacingOccurrences(
+            of: "<[^>]+>",
+            with: "",
+            options: .regularExpression,
+            range: nil)
+    }
+}

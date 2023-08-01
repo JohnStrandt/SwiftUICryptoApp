@@ -35,6 +35,7 @@ struct PortfolioView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     dismissButton
+                    
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     trailingNavBarButtons
@@ -43,8 +44,7 @@ struct PortfolioView: View {
             .onChange(of: vm.searchText, perform: { value in
                 if value == "" {
                     removeSelectedCoin()
-                    // dismiss coin info & save button?
-                    // when search bar is cleared
+                    // dismiss coin info & save button when search bar is cleared
                 }
             })
         }
@@ -189,10 +189,6 @@ extension PortfolioView {
     }
     
 }
-
-
-
-
 
 
 struct PortfolioView_Previews: PreviewProvider {

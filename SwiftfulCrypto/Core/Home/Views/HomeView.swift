@@ -10,10 +10,12 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
-    @State private var showPortfolio: Bool = false
-    @State private var showPortfolioView: Bool = false // sheet
+    @State private var showPortfolio: Bool = false// animate right
+    @State private var showPortfolioView: Bool = false// new sheet
+    @State private var showSettingsView: Bool = false// new sheet
     @State private var selectedCoin: CoinModel? = nil
     @State private var showDetailView: Bool = false
+    
     
     var body: some View {
         ZStack {
@@ -26,13 +28,9 @@ struct HomeView: View {
             
             VStack {
                 homeHeader
-                
                 HomeStatsView(showPortfolio: $showPortfolio)
-                
                 SearchBarView(searchText: $vm.searchText)
-                
                 columnTitles
- 
                 if !showPortfolio {
                     allCoinsList
                         .transition(.move(edge: .leading))
@@ -41,9 +39,10 @@ struct HomeView: View {
                     portfolioCoinsList
                         .transition(.move(edge: .trailing))
                 }
-   
-                
                 Spacer(minLength: 0)
+            }
+            .sheet(isPresented: $showSettingsView) {
+                SettingsView()
             }
         }
         .background(
@@ -66,6 +65,8 @@ extension HomeView {
                 .onTapGesture {
                     if showPortfolio {
                         showPortfolioView.toggle()
+                    } else {
+                        showSettingsView.toggle()
                     }
                 }
                 .background( CircleButtonAnimationView(animate: $showPortfolio))

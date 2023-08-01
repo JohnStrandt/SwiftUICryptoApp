@@ -10,9 +10,9 @@ import Combine
 
 class CoinDetailDataService {
     
+    let coin: CoinModel
     @Published var coinDetails: CoinDetailModel? = nil
     var coinDetailSubscription: AnyCancellable?
-    let coin: CoinModel
     
     init(coin: CoinModel) {
         self.coin = coin
