@@ -17,10 +17,12 @@ struct SwiftfulCryptoApp: App {
         // change nav bar font colors
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.accent)
+        UITableView.appearance().backgroundColor = UIColor.clear // List background
     }
     
     var body: some Scene {
-        WindowGroup {
+        WindowGroup { 
             
             ZStack {
                 NavigationView {

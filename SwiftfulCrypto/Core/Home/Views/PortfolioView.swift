@@ -31,6 +31,10 @@ struct PortfolioView: View {
                     }
                 }
             }
+            .background(
+                Color.theme.background
+                    .ignoresSafeArea()
+            )
             .navigationTitle("Edit Portfolio")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -62,6 +66,7 @@ extension PortfolioView {
             dismiss()
         }, label: {
             Image(systemName: "xmark")
+                .foregroundColor(Color.theme.accent)
                 .font(.headline)
         })
     }

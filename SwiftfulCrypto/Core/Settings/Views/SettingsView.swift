@@ -21,11 +21,22 @@ struct SettingsView: View {
         //  Sheets create a new environment -
         // therefore, we are no longer in our NavigationView
         NavigationView {
-            List {
-                swiftfulThinkingSection
-                coinGeckoSection
-                developerSection
-                applicationSection
+            ZStack {
+                //  background
+                Color.theme.background
+                    .ignoresSafeArea()
+                
+                //  content layer
+                List {
+                    swiftfulThinkingSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    coinGeckoSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    developerSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    applicationSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                }
             }
             .font(.headline)
             .accentColor(.blue)
@@ -47,6 +58,7 @@ extension SettingsView {
             dismiss()
         }, label: {
             Image(systemName: "xmark")
+                .foregroundColor(Color.theme.accent)
                 .font(.headline)
         })
     }
