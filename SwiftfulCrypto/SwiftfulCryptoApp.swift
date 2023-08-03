@@ -11,6 +11,7 @@ import SwiftUI
 struct SwiftfulCryptoApp: App {
     
     @StateObject private var vm = HomeViewModel()
+    @State private var showLaunchView: Bool = true
     
     init() {
         // change nav bar font colors
@@ -20,12 +21,23 @@ struct SwiftfulCryptoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
-                    .navigationBarHidden(true)
+            
+            ZStack {
+                NavigationView {
+                    HomeView()
+                        .navigationBarHidden(true)
+                }
+                .navigationViewStyle(.stack)
+                .environmentObject(vm)
+                
+                ZStack {// sometimes the z index messes up, so this protects from that
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                .zIndex(2.0)
             }
-            .navigationViewStyle(.stack)
-            .environmentObject(vm)
         }
     }
 }
